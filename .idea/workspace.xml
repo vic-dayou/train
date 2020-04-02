@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="train:war exploded" />
+      <artifact name="train:war" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
@@ -249,6 +249,28 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -265,7 +287,7 @@
       <workItem from="1576136870096" duration="16661000" />
       <workItem from="1576197456487" duration="2535000" />
       <workItem from="1576203577084" duration="4609000" />
-      <workItem from="1585812962504" duration="1057000" />
+      <workItem from="1585812962504" duration="1804000" />
     </task>
     <servers />
   </component>
