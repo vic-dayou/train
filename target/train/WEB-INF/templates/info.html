@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+
+    <style type="text/css">
+        .div-me{
+            margin-bottom: 1em;
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="ui container" style="margin-top: 5em;">
+    <div id="table-container">
+         <div class="ui segment">
+            <div class="ui item div-me">
+                <label>姓名：</label><span  th:text="${user.userName}">张三</span>
+            </div>
+            <div class="ui item div-me">
+                <label>年龄：</label><span th:text="${user.age}">23</span></br>
+            </div>
+            <div class="ui item div-me">
+                <label>地址：</label><span th:text="${user.address}">北京市丰台区云岗北区</span></br>
+            </div>
+            <div class="ui item div-me">
+                <label>手机号码：</label><span th:text="${user.phone}">12123412</span></br>
+            </div>
+            <div class="ui item div-me">
+                <label>出生日期：</label><span th:text="${#dates.format(user.birthDay,'yyyy-MM-dd')}">2019-11-11</span></br>
+            </div>
+            <div class="ui item div-me">
+                <label>创建日期：</label><span th:text="${#dates.format(user.createTime,'yyyy-MM-dd')}">2019-12-12</span></br>
+            </div>
+            <div class="ui item div-me">
+                <label>最近一次更新日期：</label><span th:text="${#dates.format(user.updateTime,'yyyy-MM-dd')}">2020-01-01</span>
+            </div>
+        </div>
+    </span>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

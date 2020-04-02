@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户系统</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+</head>
+<body>
+<div class="ui container" style="margin-top: 5em;">
+        <div style="margin-bottom: 1em;">
+            <button type="button" id="save-btn"  class="ui mini blue  button">
+                <i class="save icon"></i>保存</a>
+            </button>
+            <button type="button" onclick="window.history.go(-1)"  class="ui mini red  button">
+                <i class="cancel icon"></i>取消
+            </button>
+        </div>
+    <div id="table-container">
+        <form id="addForm" class="ui form">
+            <input type="hidden" name="id" th:value="${user.id}">
+            <table th:fragment="userList" class="ui compact teal center aligned celled table">
+                <tr>
+                    <td th:colspan="6" colspan="6" style="font-size: 10px">用户信息表</td>
+                </tr>
+                <tr>
+                    <td>姓名</td>
+                    <td>
+                        <div class="required field">
+                            <input type="text" name="userName" th:value="${user.userName}" placeholder="姓名">
+                        </div>
+                    </td>
+                    <td>年龄</td>
+                    <td>
+                        <div class="required field">
+                            <input type="text" name="age" th:value="${user.age}" placeholder="年龄">
+                        </div>
+                    </td>
+                    <td>出生日期</td>
+                    <td>
+                        <div class="required field">
+                            <input type="date" name="birthDay" value="2019/11/11" th:value="${#dates.format(user.birthDay,'yyyy-MM-dd')}" placeholder="出生日期">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>地址</td>
+                    <td>
+                        <div class="required field">
+                            <input type="text" name="address" th:value="${user.address}" placeholder="地址">
+                        </div>
+                    </td>
+                    <td>手机号码</td>
+                    <td>
+                        <div class="required field">
+                            <input type="text" name="phone" th:value="${user.phone}" placeholder="手机号码">
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script type="text/javascript">
+
+    $('#save-btn').click(function () {
+
+        var userName = $('[name="userName"]').val();
+        if (userName == ""){
+            alert("用户名不能为空");
+            return ;
+        }
+        var age = $('[name="age"]').val();
+        var ageNumber = new Number(age);
+
+        if (ageNumber <= 0 || ageNumber >120 || isNaN(ageNumber)) {
+            alert("年龄数值不合法");
+            return ;
+        }
+        var birthday = $('[name="birthDay"]').val();
+        if (birthday == ""){
+            alert("请选择出生日期");
+            return ;
+        }
+        var address = $('[name="address"]').val();
+        if (address == ""){
+            alert("请输入地址");
+            return ;
+        }
+        var phone = $('[name="phone"]').val();
+        var regExp = /^[1][3,4,5,7,8][0-9]{9}$/;
+        if (!regExp.test(phone)) {
+            alert("请输入合法的手机号");
+            return ;
+        }
+
+
+        var jsonForm = {};
+        var formData = $('#addForm').serializeArray();
+        $.each(formData,function (i,item) {
+            jsonForm[item.name] = item.value;
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/train/user/add",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(jsonForm),
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 'success'){
+                    window.location.href="/train/user/list";
+                }else {
+                    alert(data.mgs);
+                }
+
+            },
+            error: function (data) {
+                console.log(data);
+
+            }
+        });
+    });
+
+
+
+
+</script>
+</body>
+</html>
